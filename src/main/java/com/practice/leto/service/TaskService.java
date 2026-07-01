@@ -5,6 +5,7 @@ import com.practice.leto.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
-
+    @Transactional(readOnly = true)
     public List<TaskEntity> getAllTasks() {
         return taskRepository.findAll();
     }
@@ -22,6 +23,11 @@ public class TaskService {
         return taskRepository.save(taskEntity);
     }
 
-    public void deleteTask(Long id) { taskRepository.deleteById(id); }
+    @Transactional
+    public void deleteTask(Long id) {
+        TaskEntity entity = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Нет такой задачи!"));
+        taskRepository.deleteById(entity.getId());
+    }
 
 }
