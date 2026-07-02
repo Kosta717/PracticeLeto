@@ -1,5 +1,6 @@
 package com.practice.leto.dto;
 
+import com.practice.leto.dto.dtoEnum.DtoEnum;
 import com.practice.leto.entity.entityEnum.EntityEnums;
 import lombok.*;
 
