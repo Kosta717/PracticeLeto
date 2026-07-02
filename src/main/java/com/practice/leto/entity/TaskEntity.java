@@ -1,13 +1,10 @@
 package com.practice.leto.entity;
 
-import com.practice.leto.entity.entityEnum.EntityEnums;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcType;
+import com.practice.leto.entity.entityEnum.EntityEnums;
 import org.hibernate.dialect.type.PostgreSQLEnumJdbcType;
 
 @Entity
@@ -24,5 +21,9 @@ public class TaskEntity {
 
     @JdbcType(PostgreSQLEnumJdbcType.class)
     private EntityEnums status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
 }
