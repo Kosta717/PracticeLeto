@@ -14,6 +14,7 @@ import java.util.List;
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
+
     @Transactional(readOnly = true)
     public List<TaskEntity> getAllTasks() {
         return taskRepository.findAll();
