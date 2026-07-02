@@ -1,9 +1,13 @@
 package com.practice.leto.dto;
 
 import com.practice.leto.entity.entityEnum.EntityEnums;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaskDto {
     private Long id;
     private String title;

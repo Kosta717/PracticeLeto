@@ -1,6 +1,6 @@
 package com.practice.leto.controller;
 
-import com.practice.leto.entity.TaskEntity;
+import com.practice.leto.dto.TaskDto;
 import com.practice.leto.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +14,10 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping("/get")
-    public List<TaskEntity> getAllTasks() { return taskService.getAllTasks(); }
+    public List<TaskDto> getAllTasks() { return taskService.getAllTasks(); }
 
     @PostMapping("/post")
-    public TaskEntity createTask(TaskEntity taskEntity) { return taskService.createTask(taskEntity); }
+    public TaskDto createTask(@RequestBody TaskDto taskDto) { return taskService.createTask(taskDto); }
 
     @DeleteMapping("/{id}")
     public void deleteTask(Long id) { taskService.deleteTask(id); }
