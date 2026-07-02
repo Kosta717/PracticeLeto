@@ -42,4 +42,10 @@ public class UserService {
                 .build();
     }
 
+    @Transactional
+    public void deleteUser(Long id) {
+        UserEntity entity = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Нет такой задачи!"));
+        userRepository.deleteById(entity.getId());
+    }
 }
